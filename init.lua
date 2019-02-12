@@ -42,12 +42,12 @@ minetest.register_node("mesecons_protected_button:button_off", {
 	}
 	},
 	groups = {dig_immediate=2, mesecon_needs_receiver = 1},
-	description = "Button",
+	description = "Protected Button",
 	on_rightclick = function (pos, node, clicker)
 		if minetest.is_protected(pos, clicker:get_player_name()) then
 			return
 		end
-		
+
 		minetest.swap_node(pos, {name = "mesecons_protected_button:button_on", param2=node.param2})
 		mesecon.receptor_on(pos, mesecon.rules.buttonlike_get(node))
 		minetest.sound_play("mesecons_button_push", {pos=pos})
@@ -92,7 +92,7 @@ minetest.register_node("mesecons_protected_button:button_on", {
     },
 	groups = {dig_immediate=2, not_in_creative_inventory=1, mesecon_needs_receiver = 1},
 	drop = 'mesecons_protected_button:button_off',
-	description = "Button",
+	description = "Protected Button",
 	sounds = default.node_sound_stone_defaults(),
 	mesecons = {receptor = {
 		state = mesecon.state.on,
